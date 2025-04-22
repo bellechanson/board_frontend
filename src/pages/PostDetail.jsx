@@ -7,7 +7,7 @@ function PostDetail() {
     const [post, setPost] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:8787/api/posts/${id}`) // ✅ 절대경로로 명시하면 안전
+        axios.get(`/api/posts/${id}`)
             .then(res => {
                 console.log("✅ 받은 게시글 데이터:", res.data);
                 setPost(res.data);
