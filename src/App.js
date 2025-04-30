@@ -1,30 +1,35 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import PostList from './pages/PostList';
-import PostDetail from './pages/PostDetail';
-import PostWrite from './pages/PostWrite';
-import PostEdit from './pages/PostEdit';
-import BoardPage from './pages/BoardPage'; // 🔥 인프런 스타일 게시판
+import BoardCreate from './pages/BoardCreate';
+import PostCreate from "./pages/PostCreate";
+import PostList from "./pages/PostList";
+import PostDetail from "./pages/PostDetail";
+import BoardCategory from "./pages/BoardCategory";
+import Header from "./components/Header";
+import Home from "./pages/Home";
 
+import "./App.css"
 
 function App() {
+
     return (
+
         <Router>
+            <Header />
+            <div className="wrap">
             <Routes>
-                {/* ✅ 메인 페이지를 BoardPage로 설정 */}
-                <Route path="/" element={<BoardPage />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/board" element={<BoardCreate />} />
+                <Route path="/boards/:boardId/create" element={<PostCreate />} />
+                <Route path="/boards/:boardId/posts" element={<PostList />} />
+                <Route path="/posts/:postId" element={<PostDetail />} />
+                <Route path="/boardcategory" element={<BoardCategory />} />
 
-                {/* 기존 PostList는 별도 경로로 이동 */}
-                <Route path="/classic" element={<PostList />} />
-
-                <Route path="/posts/:id" element={<PostDetail />} />
-
-                {/* 게시글 상세/작성/수정 */}
-                <Route path="/write" element={<PostWrite />} />
-                <Route path="/posts/:id/edit" element={<PostEdit />} />
             </Routes>
+        </div>
         </Router>
     );
 }
 
 export default App;
+
